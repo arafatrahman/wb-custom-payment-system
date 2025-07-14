@@ -1,0 +1,331 @@
+.hm-payment-widget {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.hm-service-selection {
+    margin-bottom: 20px;
+}
+
+.hm-service-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.hm-service-checkbox input {
+    margin-right: 10px;
+}
+
+.hm-service-info {
+    flex-grow: 1;
+}
+
+.hm-service-name {
+    font-weight: bold;
+}
+
+.hm-service-price {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.hm-custom-amount {
+    margin: 20px 0;
+}
+
+.hm-custom-amount label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.hm-custom-amount input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.hm-total-section {
+    background: #e8f5e9;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.hm-total-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+.hm-pay-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.hm-pay-button:hover {
+    background: #3e8e41;
+}
+
+.hm-pay-button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.hm-error {
+    color: #f44336;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.hm-success {
+    color: #4CAF50;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.hm-tabs-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.hm-tab-btn {
+    padding: 10px 15px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.hm-tab-btn:hover {
+    background: #e0e0e0;
+}
+
+.hm-tab-btn.active {
+    background: #4CAF50;
+    color: white;
+}
+
+.hm-tab-content {
+    display: none;
+}
+
+.hm-tab-content.active {
+    display: block;
+}
+
+.hm-hourly-service {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.hm-customer-info {
+    margin: 20px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 5px;
+}
+
+.hm-form-group {
+    margin-bottom: 15px;
+}
+
+.hm-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.hm-form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+.hm-payment-widget {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.hm-tabs-header {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.hm-tab-btn {
+    padding: 10px 20px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.hm-tab-btn.active {
+    background: #4CAF50;
+    color: white;
+}
+
+.hm-tab-content {
+    display: none;
+    padding: 15px 0;
+}
+
+.hm-tab-content.active {
+    display: block;
+}
+
+.hm-service-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.hm-service-info {
+    flex-grow: 1;
+}
+
+.hm-service-name {
+    font-weight: bold;
+}
+
+.hm-service-price {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.hm-total-section {
+    background: #e8f5e9;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.hm-total-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+#card-element {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+}
+
+#card-errors {
+    color: #fa755a;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.hm-pay-button {
+    width: 100%;
+    padding: 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.hm-pay-button:hover {
+    background: #3e8e41;
+}
+
+.hm-pay-button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.hm-error {
+    color: #f44336;
+    margin: 10px 0;
+    padding: 10px;
+    background: #ffebee;
+    border-radius: 4px;
+    display: none;
+}
+
+.hm-hourly-service {
+    padding: 10px;
+    margin-bottom: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.hm-hourly-service-controls {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.hm-hourly-service-controls input {
+    width: 60px;
+    padding: 5px;
+    margin: 0 10px;
+}
+
+.hm-hourly-service-controls button {
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
