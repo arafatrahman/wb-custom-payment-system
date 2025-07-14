@@ -34,7 +34,7 @@ function hm_create_payment_intent() {
                 'wp_user_id' => get_current_user_id()
             ]
         ]);
-        
+        hm_handle_payment_success($paymentIntent);
         wp_send_json_success([
             'clientSecret' => $paymentIntent->client_secret
         ]);
