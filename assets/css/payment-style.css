@@ -329,3 +329,172 @@
     padding: 5px 10px;
     cursor: pointer;
 }
+
+
+
+
+:root {
+            --wb-primary: #4CAF50;
+            --wb-primary-dark: #3d8b40;
+            --wb-text: #333;
+            --wb-text-light: #666;
+            --wb-border: #e0e0e0;
+            --wb-bg-light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+        
+
+        
+        .payment-confirmation {
+            width: 100%;
+            max-width: 440px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .confirmation-header {
+            padding: 36px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--wb-bg-light) 0%, #e9ecef 100%);
+            border-bottom: 1px solid var(--wb-border);
+            position: relative;
+        }
+        
+        .confirmation-icon {
+            width: 72px;
+            height: 72px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.2));
+        }
+        
+        .confirmation-header h2 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--wb-text);
+        }
+        
+        .confirmation-subtext {
+            margin: 8px 0 0;
+            color: var(--wb-text-light);
+            font-size: 16px;
+        }
+        
+        .confirmation-details {
+            padding: 28px 36px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: var(--wb-text-light);
+            font-size: 15px;
+        }
+        
+        .detail-value {
+            color: var(--wb-text);
+            font-weight: 500;
+            font-size: 15px;
+        }
+        
+        .confirmation-actions {
+            padding: 0 36px 28px;
+            display: flex;
+            gap: 16px;
+        }
+        
+        .confirmation-btn {
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: var(--wb-primary);
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--wb-primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: var(--wb-primary);
+            border: 1px solid var(--wb-border);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f9f9f9;
+            border-color: var(--wb-primary);
+        }
+        
+        .confirmation-footer {
+            padding: 18px 36px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-top: 1px solid var(--wb-border);
+            font-size: 14px;
+            color: var(--wb-text-light);
+        }
+        
+        .confirmation-footer a {
+            color: var(--wb-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .confirmation-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .confirmation-header {
+                padding: 28px 24px;
+            }
+            
+            .confirmation-details {
+                padding: 24px;
+            }
+            
+            .confirmation-actions {
+                padding: 0 24px 24px;
+                flex-direction: column;
+            }
+        }
