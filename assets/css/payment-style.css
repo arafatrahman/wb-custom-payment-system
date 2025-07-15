@@ -1,11 +1,16 @@
 .hm-payment-widget {
     font-family: Arial, sans-serif;
-    max-width: 600px;
+    max-width: 32%;
     margin: 0 auto;
     padding: 20px;
     background: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.hm-payment-widget h2 {
+    font-size: 20px;
+    padding-bottom: 16px;
 }
 
 .hm-service-selection {
@@ -32,11 +37,13 @@
 
 .hm-service-name {
     font-weight: bold;
+    font-size: 15px;
 }
 
 .hm-service-price {
     color: #4CAF50;
     font-weight: bold;
+    font-size: 15px;
 }
 
 .hm-custom-amount {
@@ -182,7 +189,7 @@
 
 
 .hm-payment-widget {
-    max-width: 600px;
+    width: 32%;
     margin: 0 auto;
     padding: 20px;
     background: #f9f9f9;
