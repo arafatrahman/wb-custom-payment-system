@@ -34,7 +34,7 @@ function hm_create_payment_intent() {
                 'wp_user_id' => get_current_user_id()
             ]
         ]);
-        hm_handle_payment_success($paymentIntent);
+       hm_handle_payment_success($paymentIntent,$name, $email, $phone, $services);
         wp_send_json_success([
             'clientSecret' => $paymentIntent->client_secret
         ]);
@@ -46,19 +46,19 @@ function hm_create_payment_intent() {
     }
 }
 
-function hm_handle_payment_success($paymentIntent) {
+function hm_handle_payment_success($paymentIntent,$name, $email, $phone, $services) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'wb_payments';
     
     $wpdb->insert($table_name, [
-        'payment_id' => $paymentIntent->id,
-        'amount' => $paymentIntent->amount / 100, // Convert from pence
-        'currency' => $paymentIntent->currency,
-        'customer_name' => $paymentIntent->metadata->customer_name,
-        'customer_email' => $paymentIntent->metadata->customer_email,
-        'customer_phone' => $paymentIntent->metadata->customer_phone,
-        'services' => $paymentIntent->metadata->services,
-        'status' => $paymentIntent->status,
+        'payment_id' => '',
+        'amount' => '', // Convert from pence
+        'currency' => 'GBP',
+        'customer_name' => $name,
+        'customer_email' => $email,
+        'customer_phone' => $phone,
+        'services' => $services ? json_encode($services) : '',
+        'status' => 'approved',
         'created_at' => current_time('mysql')
     ]);
     
