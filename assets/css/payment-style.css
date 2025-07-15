@@ -186,7 +186,9 @@
 
 
 
-
+.hm-service-desc {
+    font-size: 13px;
+}
 
 .hm-payment-widget {
     width: 32%;

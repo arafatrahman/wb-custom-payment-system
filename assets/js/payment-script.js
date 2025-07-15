@@ -131,10 +131,15 @@ jQuery(document).ready(function($) {
         totalAmount = 0;
         
         // Check which tab is active
-        const servicesTabActive = $('#hm-services-tab').hasClass('active');
+        const servicesTabActive = $('#hm-custom-tab').hasClass('active');
         
         if (servicesTabActive) {
-            // Calculate from selected services
+             // Calculate from custom amount
+            totalAmount = parseFloat($('#hm-custom-amount-input').val()) || 0;
+
+        } else {
+
+                        // Calculate from selected services
             $('.hm-service-checkbox input[type="checkbox"]:checked').each(function() {
                 if (!$(this).data('hourly-id')) {
                     // Non-hourly services
@@ -146,9 +151,7 @@ jQuery(document).ready(function($) {
             for (const service of Object.values(hourlyServices)) {
                 totalAmount += service.price * service.hours;
             }
-        } else {
-            // Calculate from custom amount
-            totalAmount = parseFloat($('#hm-custom-amount-input').val()) || 0;
+           
         }
         
         // Update display
