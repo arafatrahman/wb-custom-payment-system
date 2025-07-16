@@ -231,6 +231,25 @@ jQuery(document).ready(function($) {
             }
             
             if (paymentIntent.status === 'succeeded') {
+
+                await $.ajax({
+                    url: WB_PAYMENT_vars.ajax_url,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        action: 'hm_handle_payment_success',
+                        security: WB_PAYMENT_vars.nonce,
+                        payment_id: paymentIntent.id,
+                        amount: paymentIntent.amount,
+                        currency: paymentIntent.currency,
+                        customer_name: customerName,
+                        customer_email: customerEmail,
+                        customer_phone: customerPhone,
+                        services: JSON.stringify(getSelectedServices()),
+                        status: paymentIntent.status
+                    }
+                });
+
     // Format amount with currency symbol
     const amountFormatted = new Intl.NumberFormat('en-GB', {
         style: 'currency',
