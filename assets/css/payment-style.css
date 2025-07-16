@@ -1,6 +1,5 @@
 .hm-payment-widget {
     font-family: Arial, sans-serif;
-    max-width: 32%;
     margin: 0 auto;
     padding: 20px;
     background: #f9f9f9;
@@ -9,8 +8,8 @@
 }
 
 .hm-payment-widget h2 {
-    font-size: 20px;
-    padding-bottom: 16px;
+    font-size: 20px !important;
+    padding-bottom: 16px !important;
 }
 
 .hm-service-selection {
@@ -41,7 +40,7 @@
 }
 
 .hm-service-price {
-    color: #4CAF50;
+    color: #4CAF50 !important;
     font-weight: bold;
     font-size: 15px;
 }
@@ -59,13 +58,13 @@
 .hm-custom-amount input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #ddd !important;
     border-radius: 5px;
     font-size: 16px;
 }
 
 .hm-total-section {
-    background: #e8f5e9;
+    background: #e8f5e9 !important;
     padding: 15px;
     border-radius: 5px;
     margin: 20px 0;
@@ -75,14 +74,14 @@
 .hm-total-amount {
     font-size: 24px;
     font-weight: bold;
-    color: #2e7d32;
+    color: #2e7d32 !important;
 }
 
 .hm-pay-button {
     display: block;
     width: 100%;
     padding: 12px;
-    background: #4CAF50;
+    background: #4CAF50 !important;
     color: white;
     border: none;
     border-radius: 5px;
@@ -93,22 +92,22 @@
 }
 
 .hm-pay-button:hover {
-    background: #3e8e41;
+    background: #3e8e41 !important;
 }
 
 .hm-pay-button:disabled {
-    background: #cccccc;
+    background: #cccccc !important;
     cursor: not-allowed;
 }
 
 .hm-error {
-    color: #f44336;
+    color: #f44336 !important;
     margin-top: 10px;
     text-align: center;
 }
 
 .hm-success {
-    color: #4CAF50;
+    color: #4CAF50 !important;
     margin-top: 10px;
     text-align: center;
 }
@@ -135,7 +134,7 @@
 }
 
 .hm-tab-btn.active {
-    background: #4CAF50;
+    background: #4CAF50 !important;
     color: white;
 }
 
@@ -216,7 +215,7 @@
 }
 
 .hm-tab-btn.active {
-    background: #4CAF50;
+    background: #4CAF50 !important;
     color: white;
 }
 
@@ -248,12 +247,12 @@
 }
 
 .hm-service-price {
-    color: #4CAF50;
+    color: #4CAF50 !important;
     font-weight: bold;
 }
 
 .hm-total-section {
-    background: #e8f5e9;
+    background: #e8f5e9 !important;
     padding: 15px;
     border-radius: 5px;
     margin: 20px 0;
@@ -263,7 +262,7 @@
 .hm-total-amount {
     font-size: 24px;
     font-weight: bold;
-    color: #2e7d32;
+    color: #2e7d32 !important;
 }
 
 #card-element {
@@ -274,7 +273,7 @@
 }
 
 #card-errors {
-    color: #fa755a;
+    color: #fa755a !important;
     margin-top: 5px;
     font-size: 14px;
 }
@@ -282,7 +281,7 @@
 .hm-pay-button {
     width: 100%;
     padding: 12px;
-    background: #4CAF50;
+    background: #4CAF50 !important;
     color: white;
     border: none;
     border-radius: 5px;
@@ -293,7 +292,7 @@
 }
 
 .hm-pay-button:hover {
-    background: #3e8e41;
+    background: #3e8e41 !important;
 }
 
 .hm-pay-button:disabled {
@@ -331,7 +330,7 @@
 }
 
 .hm-hourly-service-controls button {
-    background: #f44336;
+    background: #f44336 !important;
     color: white;
     border: none;
     border-radius: 3px;
