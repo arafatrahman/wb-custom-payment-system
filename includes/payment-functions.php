@@ -53,12 +53,11 @@ function hm_handle_payment_success($paymentIntent) {
     $wpdb->insert($table_name, [
         'payment_id' => $paymentIntent->id,
         'amount' => $paymentIntent->amount / 100, // Convert from pence
-        'currency' => $paymentIntent->currency,
         'customer_name' => $paymentIntent->metadata->customer_name,
         'customer_email' => $paymentIntent->metadata->customer_email,
         'customer_phone' => $paymentIntent->metadata->customer_phone,
         'services' => $paymentIntent->metadata->services,
-        'status' => $paymentIntent->status,
+        'status' => 'succeeded',
         'created_at' => current_time('mysql')
     ]);
     
@@ -70,7 +69,7 @@ function hm_handle_payment_success($paymentIntent) {
 }
 
 function hm_send_confirmation_email($email, $paymentIntent) {
-    $subject = 'Your Payment Receipt';
+    $subject = 'Payment Receipt';
     $headers = ['Content-Type: text/html; charset=UTF-8'];
     
     $message = '<h2>Payment Confirmation</h2>';
@@ -88,30 +87,27 @@ function hm_send_confirmation_email($email, $paymentIntent) {
         }
         $message .= '</ul>';
     }
+
+    $message .= '<h3>Customer Details</h3><ul>';
+    $message .= '<li>Name: ' . htmlspecialchars($paymentIntent->metadata->customer_name) . '</li>';
+    $message .= '<li>Email: ' . htmlspecialchars($paymentIntent->metadata->customer_email) . '</li>';
+    $message .= '<li>Phone: ' . htmlspecialchars($paymentIntent->metadata->customer_phone) . '</li>';
+    $message .= '</ul>';
+
+    $admin_email = get_option('admin_email');
+    $to = array(
+        $admin_email,
+        'info@alldaymovingltd.co.uk',
+        $email
+    );
+
+
     
-    wp_mail($email, $subject, $message, $headers);
+    wp_mail($to, $subject, $message, $headers);
 }
-// Handle failed payment
-function hm_handle_payment_failure($paymentIntent) {
-    $metadata = $paymentIntent->metadata;
-    
-    // Save payment to database
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'wb_payments';
-    
-    $wpdb->insert($table_name, [
-        'payment_id' => $paymentIntent->id,
-        'amount' => $paymentIntent->amount / 100,
-        'currency' => $paymentIntent->currency,
-        'customer_name' => $metadata->customer_name,
-        'customer_email' => $metadata->customer_email,
-        'customer_phone' => $metadata->customer_phone,
-        'services' => $metadata->services,
-        'status' => 'failed',
-        'created_at' => current_time('mysql')
-    ]);
-    
-    // Send failure notification
-    hm_send_payment_failure_notification($paymentIntent);
-}
+
+
+add_action('wp_ajax_hm_handle_payment_success', 'hm_handle_payment_success');
+add_action('wp_ajax_nopriv_hm_handle_payment_success', 'hm_handle_payment_success');
+
 

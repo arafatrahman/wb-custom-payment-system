@@ -231,95 +231,120 @@ jQuery(document).ready(function($) {
             }
             
             if (paymentIntent.status === 'succeeded') {
-    // Format amount with currency symbol
-    const amountFormatted = new Intl.NumberFormat('en-GB', {
-        style: 'currency',
-        currency: paymentIntent.currency
-    }).format(paymentIntent.amount / 100);
-    
-    // Format timestamp
-    const paymentDate = new Date(paymentIntent.created * 1000);
-    const dateOptions = { 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric',
-        hour: '2-digit', 
-        minute: '2-digit'
-    };
-    const formattedDate = paymentDate.toLocaleDateString('en-GB', dateOptions);
-    
-    // Get card details (if available)
-    let cardDisplay = 'Card payment';
-    if (paymentIntent.payment_method_details?.card) {
-        const { brand, last4 } = paymentIntent.payment_method_details.card;
-        cardDisplay = `${brand?.toUpperCase() || 'CARD'} •••• ${last4 || '****'}`;
-    }
-    
-    // Remove payment widget completely
-    $('.hm-payment-widget').hide();
-    
-    // Populate and show confirmation
-    $('.payment-confirmation')
-        .find('#amount-paid').text(amountFormatted).end()
-        .find('#payment-method').text(cardDisplay).end()
-        .find('#transaction-id').text(paymentIntent.id).end()
-        .find('#payment-status').text(paymentIntent.status).end()
-        .find('#date-time').text(formattedDate).end()
-        .find('#currency').text(paymentIntent.currency.toUpperCase()).end()
-        .find('#client-secret').text(paymentIntent.client_secret).end()
-        .fadeIn(300);
-    
-    $('#download-receipt').on('click', function() {
-    // Format date for receipt
-    const paymentDate = new Date(paymentIntent.created * 1000);
-    const formattedDate = paymentDate.toLocaleString('en-GB', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
 
-    // Get card details
-    const cardBrand = paymentIntent.payment_method_details?.card?.brand || 'Card';
-    const cardLast4 = paymentIntent.payment_method_details?.card?.last4 || '****';
-    
-    // Create receipt content
-    const receiptContent = `
-        All Day Moving  - Payment Receipt
-        =============================
-        
-        Payment Details:
-        - Amount: £${(paymentIntent.amount/100).toFixed(2)}
-        - Currency: ${paymentIntent.currency.toUpperCase()}
-        - Payment Method: ${cardBrand} •••• ${cardLast4}
-        - Transaction ID: ${paymentIntent.id}
-        - Date: ${formattedDate}
-        - Status: ${paymentIntent.status}
-        
-        Customer Information:
-        - Name: ${$('#hm-customer-name').val()}
-        - Email: ${$('#hm-customer-email').val()}
-        - Phone: ${$('#hm-customer-phone').val()}
-        
-        Thank you for your business!
-        Contact: +44 7424 934025
-        Website: alldaymovingltd.co.uk
-    `;
-    
 
-    // Create download
-    const blob = new Blob([receiptContent], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `HelloMovers-Receipt-${paymentIntent.id}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-});
-}
+                // 3. Handle successful payment
+                await $.ajax({
+                    url: WB_PAYMENT_vars.ajax_url,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        action: 'hm_handle_payment_success',
+                        security: WB_PAYMENT_vars.nonce,
+                        payment_intent_id: paymentIntent.id,
+                        amount: paymentIntent.amount,
+                        currency: paymentIntent.currency,
+                        status: paymentIntent.status,
+                        customer_name: customerName,
+                        customer_email: customerEmail,
+                        customer_phone: customerPhone,
+                        services: getSelectedServices()
+                    }
+                });
+
+
+
+
+
+                    // Format amount with currency symbol
+                    const amountFormatted = new Intl.NumberFormat('en-GB', {
+                        style: 'currency',
+                        currency: paymentIntent.currency
+                    }).format(paymentIntent.amount / 100);
+                    
+                    // Format timestamp
+                    const paymentDate = new Date(paymentIntent.created * 1000);
+                    const dateOptions = { 
+                        year: 'numeric', 
+                        month: 'short', 
+                        day: 'numeric',
+                        hour: '2-digit', 
+                        minute: '2-digit'
+                    };
+                    const formattedDate = paymentDate.toLocaleDateString('en-GB', dateOptions);
+                    
+                    // Get card details (if available)
+                    let cardDisplay = 'Card payment';
+                    if (paymentIntent.payment_method_details?.card) {
+                        const { brand, last4 } = paymentIntent.payment_method_details.card;
+                        cardDisplay = `${brand?.toUpperCase() || 'CARD'} •••• ${last4 || '****'}`;
+                    }
+                    
+                    // Remove payment widget completely
+                    $('.hm-payment-widget').hide();
+                    
+                    // Populate and show confirmation
+                    $('.payment-confirmation')
+                        .find('#amount-paid').text(amountFormatted).end()
+                        .find('#payment-method').text(cardDisplay).end()
+                        .find('#transaction-id').text(paymentIntent.id).end()
+                        .find('#payment-status').text(paymentIntent.status).end()
+                        .find('#date-time').text(formattedDate).end()
+                        .find('#currency').text(paymentIntent.currency.toUpperCase()).end()
+                        .find('#client-secret').text(paymentIntent.client_secret).end()
+                        .fadeIn(300);
+                    
+                    $('#download-receipt').on('click', function() {
+                    // Format date for receipt
+                    const paymentDate = new Date(paymentIntent.created * 1000);
+                    const formattedDate = paymentDate.toLocaleString('en-GB', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+
+                    // Get card details
+                    const cardBrand = paymentIntent.payment_method_details?.card?.brand || 'Card';
+                    const cardLast4 = paymentIntent.payment_method_details?.card?.last4 || '****';
+                    
+                    // Create receipt content
+                    const receiptContent = `
+                        All Day Moving  - Payment Receipt
+                        =============================
+                        
+                        Payment Details:
+                        - Amount: £${(paymentIntent.amount/100).toFixed(2)}
+                        - Currency: ${paymentIntent.currency.toUpperCase()}
+                        - Payment Method: ${cardBrand} •••• ${cardLast4}
+                        - Transaction ID: ${paymentIntent.id}
+                        - Date: ${formattedDate}
+                        - Status: ${paymentIntent.status}
+                        
+                        Customer Information:
+                        - Name: ${$('#hm-customer-name').val()}
+                        - Email: ${$('#hm-customer-email').val()}
+                        - Phone: ${$('#hm-customer-phone').val()}
+                        
+                        Thank you for your business!
+                        Contact: +44 7424 934025
+                        Website: alldaymovingltd.co.uk
+                    `;
+                    
+
+                    // Create download
+                    const blob = new Blob([receiptContent], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `HelloMovers-Receipt-${paymentIntent.id}.txt`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+            }
             
         } catch (err) {
             showError(err.message);
