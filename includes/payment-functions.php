@@ -34,6 +34,7 @@ function hm_create_payment_intent() {
                 'wp_user_id' => get_current_user_id()
             ]
         ]);
+
         hm_handle_payment_success($paymentIntent);
         wp_send_json_success([
             'clientSecret' => $paymentIntent->client_secret
@@ -98,33 +99,8 @@ function hm_send_confirmation_email($email, $paymentIntent) {
     $admin_email = get_option('admin_email');
     $to = array(
         'alldaymovingltd.co.uk@gmail.com',
-        'mahmudabbas111@gmail.com',
         $email,
     );
     
     wp_mail($to, $subject, $message, $headers);
 }
-// Handle failed payment
-function hm_handle_payment_failure($paymentIntent) {
-    $metadata = $paymentIntent->metadata;
-    
-    // Save payment to database
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'wb_payments';
-    
-    $wpdb->insert($table_name, [
-        'payment_id' => $paymentIntent->id,
-        'amount' => $paymentIntent->amount / 100,
-        'currency' => $paymentIntent->currency,
-        'customer_name' => $metadata->customer_name,
-        'customer_email' => $metadata->customer_email,
-        'customer_phone' => $metadata->customer_phone,
-        'services' => $metadata->services,
-        'status' => 'failed',
-        'created_at' => current_time('mysql')
-    ]);
-    
-    // Send failure notification
-    hm_send_payment_failure_notification($paymentIntent);
-}
-
