@@ -134,8 +134,9 @@ function hm_send_confirmation_email($customer_name, $customer_phone, $customer_e
 
     $admin_email = get_option('admin_email');
     $to = array(
-        'alldaymovingltd.co.uk@gmail.com',
         $customer_email,
+        $admin_email,
+        'info@alldaymovingltd.co.uk'
     );
 
     wp_mail($to, $subject, $message, $headers);
