@@ -88,8 +88,21 @@ function hm_send_confirmation_email($email, $paymentIntent) {
         }
         $message .= '</ul>';
     }
+
+    $message .= '<h3>Customer Details:</h3><ul>';
+    $message .= '<li>Name: ' . htmlspecialchars($paymentIntent->metadata->customer_name) . '</li>';
+    $message .= '<li>Email: ' . htmlspecialchars($paymentIntent->metadata->customer_email) . '</li>';
+    $message .= '<li>Phone: ' . htmlspecialchars($paymentIntent->metadata->customer_phone) . '</li>';
+    $message .= '</ul>';
+
+    $admin_email = get_option('admin_email');
+    $to = array(
+        'alldaymovingltd.co.uk@gmail.com',
+        'mahmudabbas111@gmail.com',
+        $email,
+    );
     
-    wp_mail($email, $subject, $message, $headers);
+    wp_mail($to, $subject, $message, $headers);
 }
 // Handle failed payment
 function hm_handle_payment_failure($paymentIntent) {
